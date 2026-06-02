@@ -271,7 +271,18 @@ p  { margin: 0 0 1em; color: var(--text); }
   display: none;
   box-shadow: var(--shadow-lg);
 }
-.nav-drop:hover .nav-drop-menu { display: block; }
+/* Invisible bridge so the cursor can travel from trigger to menu without dropping hover */
+.nav-drop-menu::before {
+  content: "";
+  position: absolute;
+  top: -18px;
+  left: 0;
+  right: 0;
+  height: 18px;
+  background: transparent;
+}
+.nav-drop:hover .nav-drop-menu,
+.nav-drop:focus-within .nav-drop-menu { display: block; }
 .nav-drop-menu a {
   display: block;
   padding: 10px 14px;
